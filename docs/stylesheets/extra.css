@@ -1,0 +1,67 @@
+/* Colors match the app's light and dark themes (main.py in the app repo) */
+[data-md-color-scheme="default"] {
+	--md-primary-fg-color: #3B5E54;
+	--md-primary-fg-color--light: #557A6F;
+	--md-primary-fg-color--dark: #2F4C44;
+	--md-primary-bg-color: #FFFFFF;
+	--md-accent-fg-color: #C6762A;
+	--md-default-bg-color: #FFF6E6;
+	--md-default-fg-color: #2A1B12;
+	--md-typeset-a-color: #3B5E54;
+	--md-footer-bg-color: #3B5E54;
+	--md-footer-bg-color--dark: #2F4C44;
+	--dg-card: #F3E8D4;
+}
+[data-md-color-scheme="slate"] {
+	--md-hue: 35;
+	--md-primary-fg-color: #2F4C44;
+	--md-primary-fg-color--light: #3B5E54;
+	--md-primary-fg-color--dark: #243B35;
+	--md-primary-bg-color: #EDE4D6;
+	--md-accent-fg-color: #E2A062;
+	--md-default-bg-color: #1C1A17;
+	--md-typeset-a-color: #8CC4B2;
+	--md-footer-bg-color: #243B35;
+	--md-footer-bg-color--dark: #1A2B27;
+	--dg-card: #27241F;
+}
+
+.md-header__button.md-logo img { border-radius: 6px; }
+.md-typeset h1, .md-typeset h2 { color: var(--md-typeset-a-color); }
+
+/* Landing page (overrides/home.html) */
+.dg-hero { text-align: center; padding: 1.5rem 0 0.5rem; }
+.dg-hero .dg-icon { width: 112px; height: 112px; border-radius: 26px; margin: 0 auto 1rem; display: block; box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+.md-typeset .dg-hero h1 { font-size: clamp(1.9rem, 6vw, 2.6rem); font-weight: 700; line-height: 1.15; margin: 0 0 .4rem; color: var(--md-default-fg-color); }
+.dg-tagline { font-size: 1.1rem; color: var(--md-default-fg-color--light); margin: 0 0 1.2rem; }
+.dg-badge {
+	display: inline-block; padding: .55rem 1.2rem; border-radius: 999px;
+	background: var(--md-primary-fg-color); color: var(--md-primary-bg-color); font-weight: 600;
+}
+
+/* The screenshot strip scrolls sideways on narrow screens; the page never does */
+.dg-shots {
+	display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory;
+	padding: 1.5rem .25rem 2rem; justify-content: safe center;
+}
+.dg-shots img {
+	flex: 0 0 auto; width: min(190px, 60vw); height: auto; aspect-ratio: 1320 / 2868;
+	border-radius: 20px; scroll-snap-align: center; box-shadow: 0 6px 20px rgba(0,0,0,.18);
+}
+
+.dg-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.dg-feature { background: var(--dg-card); border-radius: 16px; padding: 1rem 1.2rem; }
+.md-typeset .dg-feature h2 { margin: 0 0 .4rem; font-size: 1.05rem; font-weight: 700; }
+.md-typeset .dg-feature ul { margin: 0; }
+.md-typeset .dg-feature li { margin-bottom: .2rem; }
+
+.dg-privacy { text-align: center; margin: 2rem 0 1rem; font-size: .95rem; }
+
+/* FAQ boxes (??? question) in the app's green instead of Material's lime */
+.md-typeset .admonition.question,
+.md-typeset details.question { border-color: var(--md-primary-fg-color--light); }
+.md-typeset .question > .admonition-title,
+.md-typeset .question > summary { background-color: color-mix(in srgb, var(--md-primary-fg-color) 12%, transparent); }
+.md-typeset .question > .admonition-title::before,
+.md-typeset .question > summary::before,
+.md-typeset .question > summary::after { background-color: var(--md-typeset-a-color); }

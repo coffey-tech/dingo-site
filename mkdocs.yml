@@ -1,0 +1,60 @@
+site_name: Dingo Meal Planner
+site_url: https://dingo-meal-planner.com/
+site_description: Recipes, weekly menus and grocery lists on your iPhone. No account, no ads, no tracking.
+copyright: © 2026 CoffeyTech
+
+theme:
+  name: material
+  custom_dir: overrides
+  logo: assets/icon.png
+  favicon: assets/icon.png
+  font: false   # system fonts; no requests to Google Fonts
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.footer
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  generator: false
+
+plugins:
+  - search
+  - blog:
+      blog_toc: true
+      post_date_format: long
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: false
+  - pymdownx.details
+  - pymdownx.superfences
+
+nav:
+  - Home: index.md
+  - Support: support.md
+  - Privacy: privacy.md
+  - Blog:
+      - blog/index.md
+
+not_in_nav: |
+  /privacy.html

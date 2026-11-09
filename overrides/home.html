@@ -1,0 +1,48 @@
+{% extends "main.html" %}
+
+{#- Product landing page: replaces the normal Markdown content of docs/index.md -#}
+{% block content %}
+<section class="dg-hero">
+	<img class="dg-icon" src="{{ 'assets/icon.png' | url }}" alt="Dingo app icon">
+	<h1>Dingo Meal Planner</h1>
+	<p class="dg-tagline">Recipes, menus &amp; grocery lists</p>
+	<span class="dg-badge">Coming soon to the App Store</span>
+</section>
+
+<div class="dg-shots" aria-label="App screenshots">
+	<img src="{{ 'assets/screenshots/01-menu.jpg' | url }}" alt="The weekly menu, with meals planned for each day" loading="lazy">
+	<img src="{{ 'assets/screenshots/02-cookbook.jpg' | url }}" alt="The cookbook, with search, sort and filters" loading="lazy">
+	<img src="{{ 'assets/screenshots/03-recipe.jpg' | url }}" alt="A recipe with its ingredients and steps" loading="lazy">
+	<img src="{{ 'assets/screenshots/04-grocery-list.jpg' | url }}" alt="A grocery list sorted by store department" loading="lazy">
+</div>
+
+<div class="dg-features">
+	<div class="dg-feature">
+		<h2>Plan the week</h2>
+		<ul>
+			<li>See the whole week at a glance</li>
+			<li>Breakfast, lunch, dinner, snacks and dessert</li>
+			<li>Add a recipe to any meal in a couple of taps</li>
+		</ul>
+	</div>
+	<div class="dg-feature">
+		<h2>Keep your cookbook</h2>
+		<ul>
+			<li>Import recipes from most recipe websites with a link</li>
+			<li>Search by name or ingredient; sort and filter by time, cost and rating</li>
+			<li>Tick off ingredients and steps as you cook</li>
+		</ul>
+	</div>
+	<div class="dg-feature">
+		<h2>Shop smarter</h2>
+		<ul>
+			<li>Suggestions from this week's menu</li>
+			<li>Items sorted by store department</li>
+			<li>Separate lists for different stores</li>
+		</ul>
+	</div>
+</div>
+
+<p class="dg-privacy"><strong>No account, no ads, no tracking.</strong><br>
+Your recipes and lists stay on your phone. <a href="{{ 'privacy/' | url }}">Privacy policy</a> · <a href="{{ 'support/' | url }}">Support</a></p>
+{% endblock %}
