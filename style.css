@@ -1,0 +1,92 @@
+/* Dingo Meal Planner site – colors match the app's light and dark themes (main.py) */
+:root {
+	--bg: #FFF6E6;
+	--card: #F3E8D4;
+	--fg: #2A1B12;
+	--muted: #5E5248;
+	--accent: #3B5E54;
+	--on-accent: #FFFFFF;
+	--warm: #C6762A;
+	--line: #E2D5BE;
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #1C1A17;
+		--card: #27241F;
+		--fg: #EDE4D6;
+		--muted: #B5AA9B;
+		--accent: #8CC4B2;
+		--on-accent: #12201C;
+		--warm: #E2A062;
+		--line: #3A352E;
+	}
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--fg);
+	font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+a { color: var(--accent); }
+img { max-width: 100%; display: block; }
+
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+.narrow { max-width: 680px; }
+
+/* Top bar */
+.topbar { border-bottom: 1px solid var(--line); }
+.topbar .wrap { display: flex; align-items: center; gap: 10px; min-height: 60px; }
+.topbar a.brand { display: flex; align-items: center; gap: 10px; color: var(--fg); text-decoration: none; font-weight: 600; }
+.topbar img { width: 32px; height: 32px; border-radius: 8px; }
+.topbar nav { margin-left: auto; display: flex; gap: 16px; font-size: 15px; }
+.topbar nav a { text-decoration: none; }
+
+/* Hero */
+.hero { text-align: center; padding: 56px 0 24px; }
+.hero img.icon { width: 112px; height: 112px; border-radius: 26px; margin: 0 auto 20px; box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+.hero h1 { font-size: clamp(30px, 7vw, 44px); line-height: 1.15; margin: 0 0 8px; }
+.hero .tagline { font-size: 20px; color: var(--muted); margin: 0 0 24px; }
+.badge {
+	display: inline-block; padding: 10px 20px; border-radius: 999px;
+	background: var(--accent); color: var(--on-accent); font-weight: 600; font-size: 15px;
+}
+
+/* Screenshots: the strip scrolls sideways on narrow screens, never the page */
+.shots {
+	display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+	padding: 24px 16px 32px; margin: 0 auto; max-width: 880px;
+	justify-content: safe center;
+}
+.shots img {
+	flex: 0 0 auto; width: min(200px, 60vw); height: auto; aspect-ratio: 1320 / 2868;
+	border-radius: 20px; scroll-snap-align: center;
+	box-shadow: 0 6px 20px rgba(0,0,0,.18);
+}
+
+/* Features */
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; padding: 16px 0 8px; }
+.feature { background: var(--card); border-radius: 16px; padding: 20px; }
+.feature h2 { margin: 0 0 8px; font-size: 19px; color: var(--accent); }
+.feature ul { margin: 0; padding-left: 20px; }
+.feature li { margin: 4px 0; }
+
+.privacy-note { text-align: center; margin: 32px 0; font-size: 18px; }
+.privacy-note strong { color: var(--accent); }
+
+/* Support and policy text */
+section.text { padding: 32px 0; border-top: 1px solid var(--line); }
+section.text h2 { color: var(--accent); margin-top: 0; }
+section.text h3 { margin: 24px 0 4px; font-size: 17px; }
+section.text p { margin: 4px 0 12px; }
+.contact { font-size: 19px; }
+
+main.policy { padding: 32px 16px 48px; }
+main.policy h1 { color: var(--accent); font-size: 30px; line-height: 1.2; margin-bottom: 0; }
+main.policy h2 { color: var(--accent); font-size: 19px; margin-top: 2em; }
+.updated { color: var(--muted); margin-top: 4px; }
+
+footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--muted); font-size: 14px; text-align: center; }
+footer a { color: var(--muted); }
