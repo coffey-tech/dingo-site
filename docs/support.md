@@ -21,6 +21,9 @@ Questions, problems or ideas? Email **[support@dingo-meal-planner.com](mailto:su
     Open Settings (the gear icon) and tap **Back up now**. Save the backup file to Files or iCloud Drive, or send it to yourself.
     On the new phone, install Dingo, open Settings, tap **Restore from backup…** and choose that file.
 
+??? question "Can I import the recipes on this website?"
+    Yes. Open any recipe on the [Recipes](recipes/index.md) page, tap **Copy link**, then in Dingo go to **Cookbook → Import** and paste it.
+
 ??? question "Why won't a recipe import from some websites?"
     Import reads the recipe data that most recipe sites publish. Some large sites block apps from reading their pages.
     For those, add the recipe by hand with **Enter manually**.

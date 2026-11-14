@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+
+{#- Recipes landing page. `recipes` is filled in by hooks/recipes.py from docs/recipes/*.md -#}
+{% block content %}
+{{ page.content }}
+
+{% if recipes %}
+<div class="dg-recipe-cards">
+	{% for r in recipes %}
+	<a class="dg-recipe-card" href="{{ r.url | url }}">
+		<h2>{{ r.title }}</h2>
+		{% if r.description %}<p>{{ r.description }}</p>{% endif %}
+		<ul class="dg-recipe__meta">
+			{% if r.category %}<li>{{ r.category }}</li>{% endif %}
+			{% if r.cuisine %}<li>{{ r.cuisine }}</li>{% endif %}
+			{% if r.total_minutes %}<li>{{ r.total_minutes }} min</li>{% endif %}
+		</ul>
+	</a>
+	{% endfor %}
+</div>
+{% else %}
+<p><em>Recipes are on the way. Check back soon!</em></p>
+{% endif %}
+{% endblock %}

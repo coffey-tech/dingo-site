@@ -1,0 +1,105 @@
+{% extends "main.html" %}
+
+{#-
+  Recipe page. Everything comes from the page's front matter (see templates/recipe.md).
+  The JSON-LD below is what Dingo's Import Recipe reads (recipe_import.py in the app repo):
+  name, recipeCategory, recipeCuisine, prep/cook/totalTime, recipeIngredient, recipeInstructions.
+-#}
+
+{%- macro duration(minutes) -%}PT{{ minutes | int }}M{%- endmacro -%}
+{%- macro hours_minutes(minutes) -%}
+	{%- set m = minutes | int -%}
+	{%- if m >= 60 -%}{{ m // 60 }} hr{% if m % 60 %} {{ m % 60 }} min{% endif %}{%- else -%}{{ m }} min{%- endif -%}
+{%- endmacro -%}
+
+{% block extrahead %}
+	{{ super() }}
+	{%- set r = page.meta -%}
+	{%- set total = r.total_minutes or ((r.prep_minutes or 0) + (r.cook_minutes or 0)) -%}
+	{%- set ld = {
+		"@context": "https://schema.org",
+		"@type": "Recipe",
+		"name": page.title,
+		"author": {"@type": "Organization", "name": "Dingo Meal Planner"},
+		"recipeIngredient": r.ingredients or [],
+		"recipeInstructions": [],
+	} -%}
+	{%- for s in r.steps or [] -%}
+		{%- set step = {"@type": "HowToStep", "text": s.text} -%}
+		{%- if s.name %}{% set _ = step.update({"name": s.name}) %}{% endif -%}
+		{%- set _ = ld.recipeInstructions.append(step) -%}
+	{%- endfor -%}
+	{%- if r.description %}{% set _ = ld.update({"description": r.description}) %}{% endif -%}
+	{%- if r.category %}{% set _ = ld.update({"recipeCategory": r.category}) %}{% endif -%}
+	{%- if r.cuisine %}{% set _ = ld.update({"recipeCuisine": r.cuisine}) %}{% endif -%}
+	{%- if r.prep_minutes %}{% set _ = ld.update({"prepTime": duration(r.prep_minutes)}) %}{% endif -%}
+	{%- if r.cook_minutes %}{% set _ = ld.update({"cookTime": duration(r.cook_minutes)}) %}{% endif -%}
+	{%- if total %}{% set _ = ld.update({"totalTime": duration(total)}) %}{% endif -%}
+	{%- if r.servings %}{% set _ = ld.update({"recipeYield": r.servings | string ~ " servings"}) %}{% endif -%}
+	{%- if r.image %}{% set _ = ld.update({"image": config.site_url ~ r.image}) %}{% endif -%}
+	<script type="application/ld+json">{{ ld | tojson }}</script>
+{% endblock %}
+
+{% block content %}
+{%- set r = page.meta -%}
+{%- set total = r.total_minutes or ((r.prep_minutes or 0) + (r.cook_minutes or 0)) -%}
+<article class="dg-recipe">
+	<p class="dg-recipe__back"><a href="{{ 'recipes/' | url }}">← All recipes</a></p>
+	<h1>{{ page.title }}</h1>
+	{% if r.description %}<p class="dg-recipe__desc">{{ r.description }}</p>{% endif %}
+
+	<ul class="dg-recipe__meta">
+		{% if r.category %}<li>{{ r.category }}</li>{% endif %}
+		{% if r.cuisine %}<li>{{ r.cuisine }}</li>{% endif %}
+		{% if r.prep_minutes %}<li>Prep {{ hours_minutes(r.prep_minutes) }}</li>{% endif %}
+		{% if r.cook_minutes %}<li>Cook {{ hours_minutes(r.cook_minutes) }}</li>{% endif %}
+		{% if total %}<li>Total {{ hours_minutes(total) }}</li>{% endif %}
+		{% if r.servings %}<li>Serves {{ r.servings }}</li>{% endif %}
+	</ul>
+
+	<div class="dg-recipe__import">
+		<button type="button" class="md-button md-button--primary" id="dg-copy-link">Copy link</button>
+		<span>Then in Dingo: <strong>Cookbook → Import</strong>, and paste.</span>
+	</div>
+
+	{% if r.image %}<img class="dg-recipe__img" src="{{ r.image | url }}" alt="{{ page.title }}">{% endif %}
+
+	<div class="dg-recipe__body">
+		<section class="dg-recipe__ingredients">
+			<h2>Ingredients</h2>
+			<ul>
+				{% for i in r.ingredients or [] %}<li>{{ i }}</li>{% endfor %}
+			</ul>
+		</section>
+		<section class="dg-recipe__steps">
+			<h2>Steps</h2>
+			<ol>
+				{% for s in r.steps or [] %}
+				<li>{% if s.name %}<strong>{{ s.name }}.</strong> {% endif %}{{ s.text }}</li>
+				{% endfor %}
+			</ol>
+		</section>
+	</div>
+
+	{% if page.content and page.content | striptags | trim %}
+	<section class="dg-recipe__notes">
+		<h2>Notes</h2>
+		{{ page.content }}
+	</section>
+	{% endif %}
+</article>
+
+<script>
+	(function () {
+		var btn = document.getElementById('dg-copy-link');
+		btn.addEventListener('click', function () {
+			var done = function () { btn.textContent = 'Link copied'; setTimeout(function () { btn.textContent = 'Copy link'; }, 2000); };
+			if (navigator.clipboard) {
+				navigator.clipboard.writeText(location.href.split('#')[0]).then(done, function () { prompt('Copy this link:', location.href); });
+			} else {
+				prompt('Copy this link:', location.href);
+			}
+		});
+	})();
+</script>
+{% endblock %}
