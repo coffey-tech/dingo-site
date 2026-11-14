@@ -10,6 +10,10 @@ Questions, problems or ideas? Email **[support@dingo-meal-planner.com](mailto:su
 
 ## Frequently asked questions
 
+??? question "How do I redeem a promo code?"
+    Open the **App Store** app, tap your profile picture at the top right, then tap **Redeem Gift Card or Code** and **Enter Code Manually**.
+    Type in your code and tap **Redeem**. Each code works once. See the [launch offer](index.md#promo) to ask for one.
+
 ??? question "Where is my data stored?"
     Only on your iPhone, inside the app. Nothing is sent to us, and deleting the app deletes its data.
 

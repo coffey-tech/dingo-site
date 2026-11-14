@@ -38,6 +38,21 @@
 	display: inline-block; padding: .55rem 1.2rem; border-radius: 999px;
 	background: var(--md-primary-fg-color); color: var(--md-primary-bg-color); font-weight: 600;
 }
+/* Official App Store badge: black on the light theme, white on the dark theme */
+.dg-store { display: inline-block; line-height: 0; transition: transform .15s; }
+.dg-store:hover, .dg-store:focus-visible { transform: translateY(-1px); }
+.dg-store img { width: 180px; height: auto; }
+.dg-store--dark { display: none; }
+[data-md-color-scheme="slate"] .dg-store--light { display: none; }
+[data-md-color-scheme="slate"] .dg-store--dark { display: inline; }
+.dg-price { margin: .7rem 0 0; font-size: .9rem; color: var(--md-default-fg-color--light); }
+
+/* Launch promo-code section */
+.dg-promo { background: var(--dg-card); border-radius: 16px; padding: 1.2rem 1.4rem; margin-top: 2rem; border-left: 4px solid var(--md-accent-fg-color); }
+.md-typeset .dg-promo h2 { margin: 0 0 .5rem; font-size: 1.25rem; font-weight: 700; }
+.md-typeset .dg-promo h3 { margin: 1rem 0 .3rem; font-size: 1rem; }
+.md-typeset .dg-promo ol { margin-top: 0; }
+.dg-promo__note { font-size: .85rem; color: var(--md-default-fg-color--light); margin-bottom: 0; }
 
 /* The screenshot strip scrolls sideways on narrow screens; the page never does */
 .dg-shots {

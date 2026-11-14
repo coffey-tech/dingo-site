@@ -1,3 +1,11 @@
 site/
 .cache/
 __pycache__/
+.venv/
+.DS_Store
+
+# Promo codes: private, never commit
+promocodes*.txt
+promo-codes*
+*promo*code*
+download-on-the-app-store-en-us/
