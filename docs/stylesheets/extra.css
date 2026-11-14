@@ -38,13 +38,10 @@
 	display: inline-block; padding: .55rem 1.2rem; border-radius: 999px;
 	background: var(--md-primary-fg-color); color: var(--md-primary-bg-color); font-weight: 600;
 }
-/* Official App Store badge: black on the light theme, white on the dark theme */
+/* Official App Store badge: black on light, white on dark (Material hides #only-light / #only-dark images by theme) */
 .dg-store { display: inline-block; line-height: 0; transition: transform .15s; }
 .dg-store:hover, .dg-store:focus-visible { transform: translateY(-1px); }
 .dg-store img { width: 180px; height: auto; }
-.dg-store--dark { display: none; }
-[data-md-color-scheme="slate"] .dg-store--light { display: none; }
-[data-md-color-scheme="slate"] .dg-store--dark { display: inline; }
 .dg-price { margin: .7rem 0 0; font-size: .9rem; color: var(--md-default-fg-color--light); }
 
 /* Launch promo-code section */
